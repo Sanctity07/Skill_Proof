@@ -1,0 +1,120 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* SkillProof Design System - Modern Tech Aesthetic */
+
+@layer base {
+  :root {
+    /* Base colors - Deep space theme */
+    --background: 220 27% 6%;
+    --foreground: 210 100% 98%;
+
+    /* Card system with glassmorphism */
+    --card: 220 25% 8%;
+    --card-foreground: 210 100% 98%;
+    --card-border: 220 30% 15%;
+
+    /* Interactive elements */
+    --popover: 220 25% 8%;
+    --popover-foreground: 210 100% 98%;
+
+    /* Brand colors - Electric blue primary */
+    --primary: 217 100% 60%;
+    --primary-foreground: 220 27% 6%;
+    --primary-glow: 217 100% 80%;
+
+    /* Secondary - Soft blue */
+    --secondary: 220 25% 12%;
+    --secondary-foreground: 210 100% 98%;
+
+    /* Muted elements */
+    --muted: 220 20% 10%;
+    --muted-foreground: 220 10% 65%;
+
+    /* Accent - Purple magic */
+    --accent: 262 80% 65%;
+    --accent-foreground: 220 27% 6%;
+    --accent-glow: 262 80% 85%;
+
+    /* Status colors */
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 210 100% 98%;
+
+    /* UI elements */
+    --border: 220 30% 15%;
+    --input: 220 25% 12%;
+    --ring: 217 100% 60%;
+
+    /* Design tokens */
+    --radius: 0.75rem;
+    --gradient-primary: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--accent)));
+    --gradient-card: linear-gradient(145deg, hsl(var(--card)), hsl(220 25% 10%));
+    --gradient-border: linear-gradient(90deg, hsl(var(--primary)), hsl(var(--accent)));
+    --glow-primary: 0 0 40px hsl(var(--primary) / 0.3);
+    --glow-accent: 0 0 40px hsl(var(--accent) / 0.3);
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+
+    --sidebar-background: 220 25% 8%;
+    --sidebar-foreground: 210 100% 98%;
+    --sidebar-primary: 217 100% 60%;
+    --sidebar-primary-foreground: 220 27% 6%;
+    --sidebar-accent: 220 25% 12%;
+    --sidebar-accent-foreground: 210 100% 98%;
+    --sidebar-border: 220 30% 15%;
+    --sidebar-ring: 217 100% 60%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    background-image: 
+      radial-gradient(circle at 20% 80%, hsl(var(--primary) / 0.1) 0%, transparent 50%),
+      radial-gradient(circle at 80% 20%, hsl(var(--accent) / 0.1) 0%, transparent 50%);
+  }
+}
+
+@layer components {
+  .glass-card {
+    @apply bg-gradient-to-br from-card to-card/50 backdrop-blur-xl border border-card-border/50;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  }
+
+  .gradient-border {
+    position: relative;
+    background: var(--gradient-card);
+    border-radius: var(--radius);
+  }
+
+  .gradient-border::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    padding: 1px;
+    background: var(--gradient-border);
+    border-radius: inherit;
+    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    mask-composite: exclude;
+  }
+
+  .glow-on-hover {
+    transition: var(--transition-smooth);
+  }
+
+  .glow-on-hover:hover {
+    box-shadow: var(--glow-primary);
+    transform: translateY(-2px);
+  }
+
+  .text-gradient {
+    background: var(--gradient-primary);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+}
